@@ -1,3 +1,3 @@
 export { default as Main } from './Main';
 export { default as Minimal } from './Minimal';
-// export { default as TestLandingLayout } from './TestLandingLayout';
+export { default as LandingLayout } from './LandingLayout';

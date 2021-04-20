@@ -2,20 +2,20 @@ import React from 'react';
 
 import { Switch, Redirect } from 'react-router-dom';
 import { RouteWithLayout } from './components';
-import { Main, TestLandingLayout } from './layouts';
+import { Main, LandingLayout } from './layouts';
 
 
 import {
     Dashboard,
     // Auth,
-    // Landing,
-    // Forums,
-    // ForumSection,
-    // Post,
+    Landing,
+    Forums,
+    ForumSection,
+    Post,
     // Profile,
     // MyProfile,
     // // Dummy,
-    // CreatePost,
+    CreatePost,
     // Settings
   } from './views';
 
@@ -50,15 +50,14 @@ import {
         /> */}
   
         {/* <RouteWithLayout component={Auth} exact layout={Main} path="/auth" /> */}
-        {/* === TEST LANDING === */}
-        {/* <RouteWithLayout
+        <RouteWithLayout
           component={Landing}
           exact
-          layout={TestLandingLayout}
+          layout={LandingLayout}
           path="/landing"
-        /> */}
+        />
         {/**PRIVATE ROUTE IN PROGRESS */}
-        {/* <RouteWithLayout component={Forums} exact layout={Main} path="/Forums" />
+        <RouteWithLayout component={Forums} exact layout={Main} path="/Forums" />
         <RouteWithLayout
           component={ForumSection}
           exact
@@ -70,14 +69,14 @@ import {
           exact
           layout={Main}
           path="/forums/:forumSlug/createpost"
-        /> */}
+        />
         {/**create post page */}
-        {/* <RouteWithLayout
+        <RouteWithLayout
           component={Post}
           exact
           layout={Main}
           path="/forums/:forumSlug/:postSlug"
-        /> */}
+        />
         {/* <RouteWithLayout
           component={Dummy}
           exact

@@ -99,11 +99,11 @@ const Sidebar = ({
     //   icon: <AccountBoxIcon />,
     // },
 
-    // {
-    //   title: 'Forums',
-    //   href: '/Forums',
-    //   icon: <MessageIcon />,
-    // },
+    {
+      title: 'Forums',
+      href: '/Forums',
+      icon: <MessageIcon />,
+    },
     // // {
     // //   title: 'Dummy',
     // //   href: '/Dummy',
