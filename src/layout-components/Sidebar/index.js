@@ -8,15 +8,11 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import MessageIcon from '@material-ui/icons/Message';
 
 import FlashOnIcon from '@material-ui/icons/FlashOn'; //temp icon
-import FlightLandIcon from '@material-ui/icons/FlightLand';
-import LockIcon from '@material-ui/icons/Lock';
 import SidebarNav from './components/SidebarNav';
 import SidebarProfile from './components/SidebarProfile';
-import BlockIcon from '@material-ui/icons/Block';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
 // const drawerWidth = 240;
-
 const useStyles = makeStyles (theme => ({
   drawer: {
     width: drawerWidth => drawerWidth,
@@ -82,6 +78,7 @@ const Sidebar = ({
   isDesktop,
   // handleMiniClose,
 }) => {
+
   const classes = useStyles (drawerWidth);
   // const theme = useTheme ();
 
@@ -93,11 +90,11 @@ const Sidebar = ({
       href: '/Dashboard',
       icon: <DashboardIcon />,
     },
-    // {
-    //   title: 'Profile',
-    //   href: '/Profile/me',
-    //   icon: <AccountBoxIcon />,
-    // },
+    {
+      title: 'Profile',
+      href: '/Profile/me',
+      icon: <AccountBoxIcon />,
+    },
 
     {
       title: 'Forums',
@@ -109,21 +106,21 @@ const Sidebar = ({
     // //   href: '/Dummy',
     // //   icon: <MessageIcon />,
     // // }
-    // {
-    //   title: 'Settings',
-    //   href: '/settings',
-    //   icon: <SettingsIcon />,
-    // },
-    // {
-    //   title: 'bro-bro test',
-    //   href: '/profile/bro-bro',
-    //   icon: <SettingsIcon />,
-    // },
-    // {
-    //   title: 'tivotrix test',
-    //   href: '/profile/tivotrix-og',
-    //   icon: <AccountBoxIcon />,
-    // },
+    {
+      title: 'Settings',
+      href: '/settings',
+      icon: <SettingsIcon />,
+    },
+    {
+      title: 'bro-bro test',
+      href: '/profile/bro-bro',
+      icon: <SettingsIcon />,
+    },
+    {
+      title: 'tivotrix test',
+      href: '/profile/tivotrix-og',
+      icon: <AccountBoxIcon />,
+    },
 
   ];
 
