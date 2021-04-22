@@ -29,7 +29,6 @@ const AccountSettings = () => {
 
   useEffect (
     () => {
-      if (!defaultAvatarsLoaded)
       try {
         dispatch (getDefaultAvatars ());
       } catch (error) {
