@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {
   Card,
   CardHeader,
   CardContent,
   Button,
   TextField,
-  Typography,
+  // Typography,
 } from '@material-ui/core';
 
 import useStyles from '../../../FormStyles';
@@ -17,7 +17,8 @@ const AccountForm = ({
   submitHandler,
   errors,
   AvatarOptions,
-  AvatarPreview
+  AvatarPreview,
+  showAvatarURLForm,
 }) => {
   const classes = useStyles ();
 
@@ -40,20 +41,22 @@ const AccountForm = ({
       <Card className={classes.card}>
         <CardHeader title="Avatar" />
         <CardContent className={classes.formContent}>
-          <TextField
-            error={errors.avatar ? true : false}
-            helperText={errors.avatar ? errors.avatar.message : null}
-            id="avatar"
-            inputRef={register}
-            label="Avatar"
-            name="avatar"
-            placeholder="Choose an avatar"
-          />
+          {showAvatarURLForm
+            ? <TextField
+                error={errors.avatar ? true : false}
+                helperText={errors.avatar ? errors.avatar.message : null}
+                id="avatar"
+                inputRef={register}
+                label="Avatar"
+                name="avatar"
+                placeholder="Choose an avatar"
+              />
+            : null}
           {AvatarPreview}
           {AvatarOptions}
         </CardContent>
       </Card>
-      <Card className={classes.card}>
+      {/* <Card className={classes.card}>
         <CardHeader title="Password" />
         <CardContent className={classes.formContent}>
           <TextField
@@ -91,7 +94,7 @@ const AccountForm = ({
             placeholder="Enter your new password to confirm"
           />
         </CardContent>
-      </Card>
+      </Card> */}
       {/* <Card className={classes.card}>
         <CardHeader title="Email" />
         <CardContent className={classes.formContent}>
@@ -110,11 +113,12 @@ const AccountForm = ({
         <Button
           className={classes.submitButton}
           color="primary"
-          variant="contained">
+          variant="contained"
+        >
           <input
             className={classes.submitInput}
             type="submit"
-            value="Save profile information"
+            value="Save account details"
           />
         </Button>
       </Card>
@@ -122,6 +126,6 @@ const AccountForm = ({
   );
 };
 
-AccountForm.propTypes = {};
+// AccountForm.propTypes = {};
 
 export default AccountForm;

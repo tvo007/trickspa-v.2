@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import {Typography, Avatar} from '@material-ui/core';
+import { Avatar} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles (theme => ({
@@ -17,19 +17,20 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-const AvatarPreview = ({userAvatar, initialAvatar}) => {
+const AvatarPreview = ({imagePreview, initials}) => {
   const classes = useStyles ();
   return (
     <div>
-      {userAvatar
-        ? <Typography>Avatar exists</Typography>
+      {imagePreview
+        ? <Avatar src={imagePreview} className={classes.avatar} />
         : <Avatar className={classes.avatar}>
-            {initialAvatar}
+            {initials}
           </Avatar>}
+
     </div>
   );
 };
 
-// AvatarPreview.propTypes = {};
+// imagePreview.propTypes = {};
 
 export default AvatarPreview;

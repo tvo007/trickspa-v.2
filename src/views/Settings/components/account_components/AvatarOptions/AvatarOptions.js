@@ -48,15 +48,14 @@ const useStyles = makeStyles (theme => ({
 
 //todo: useMediaquery to change cell row number and change image size
 
-const AvatarOptions = ({defaultAvatars}) => {
+const AvatarOptions = ({defaultAvatars, setImagePreview}) => {
   const classes = useStyles ();
   const showAvatars = defaultAvatars.map (avatar => {
     return (
       <GridListTile key={avatar.id}>
         <ButtonBase
           className={classes.buttonBase}
-          onClick={() =>
-            alert (`Clicking this should set the default avatar to avatar.url`)}
+          onClick={() => setImagePreview (avatar.url)}
         >
           <img src={avatar.url} alt="Loading" className={classes.img} />
           <GridListTileBar
@@ -73,9 +72,9 @@ const AvatarOptions = ({defaultAvatars}) => {
 
   return (
     <Grid>
-      <Typography>A button to reset your profile pic</Typography>
-      <Typography>A typical form to enter in picture url</Typography>
-      <GridList cellHeight={300}>
+      {/* <Typography>A button to reset your profile pic</Typography>
+      <Typography>A typical form to enter in picture url</Typography> */}
+      <GridList cellHeight={250}>
         <GridListTile key="Subheader" cols={2} style={{height: 'auto'}}>
           <ListSubheader component="div">
             <Typography>Default Avatars</Typography>

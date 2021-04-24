@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, Fragment} from 'react';
 import AccountForm from './account_components/AccountForm/AccountForm';
 import AvatarOptions from './account_components/AvatarOptions/AvatarOptions';
 import AvatarPreview from './account_components/AvatarPreview/AvatarPreview';
@@ -8,10 +8,11 @@ import {showSnackbar} from '../../../actions/alertActions';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import PasswordForm from './account_components/PasswordForm/PasswordForm';
 
 const schema = yup.object ().shape ({
   username: yup.string (),
-  password: yup.string (),
+  // password: yup.string (),
   avatar: yup.string (),
 });
 
@@ -24,40 +25,108 @@ const AccountSettings = ({
 }) => {
   const dispatch = useDispatch ();
 
-  const defaultAvatars = useSelector (state => state.defaultAvatars);
-  const {
-    // loading: defaultAvatarsLoading,
-    // error: defaultAvatarsError,
-    // loaded: defaultAvatarsLoaded,
-    avatars,
-  } = defaultAvatars;
+  const {avatars, loaded: defaultAvatarsLoaded} = useSelector (
+    state => state.defaultAvatars
+  );
+  // const {
+  //   // loading: defaultAvatarsLoading,
+  //   // error: defaultAvatarsError,
+  //   // loaded: defaultAvatarsLoaded,
+  //   avatars,
+  // } = defaultAvatars;
+
+  const [imagePreview, setImagePreview] = useState ('');
+
+  const [showAvatarURLForm, setShowAvatarURLForm] = useState(false)
+
+  const initials = JSON.parse (
+    JSON.stringify (`${userProfile.first_name[0]}${userProfile.last_name[0]}`)
+  );
 
   useEffect (
     () => {
+      if (!defaultAvatarsLoaded)
+        try {
+          dispatch (getDefaultAvatars ());
+        } catch (error) {
+          showSnackbar (error);
+        }
+    },
+    [dispatch, defaultAvatarsLoaded]
+  ); //default avatar loader
+
+  useEffect (() => {
+    let mounted = true;
+    if (profileLoaded) {
       try {
-        dispatch (getDefaultAvatars ());
+        let userInfoCopy = {...userInfo.user};
+        const avatarCopy = userInfoCopy.avatar !== null &&
+          userInfoCopy.avatar !== ''
+          ? userInfoCopy.avatar
+          : '';
+        setImagePreview (avatarCopy);
       } catch (error) {
         showSnackbar (error);
       }
-    },
-    [dispatch]
-  );
+    }
+    return function cleanup () {
+      mounted = false;
+    };
+  }, []);
+
+  //init once
 
   const {register, handleSubmit, errors} = useForm ({
     resolver: yupResolver (schema),
+    defaultValues: {
+      username: userInfo.user.username || '',
+      avatar: userInfo.user.avatar || ''
+      // password: '',
+    },
   });
 
-  const submitHandler = data => alert (JSON.stringify (data));
+  // const submitHandler = data => alert (JSON.stringify (data));
+
+  const submitHandler = data => {
+    // e.preventDefault ();
+    if (!profileLoaded) {
+      dispatch (showSnackbar ('Please try again'));
+    } else if (profileLoaded) {
+      try {
+        // dispatch (
+        //   updateProfile (userProfile.id, {
+        //     ...data,
+        //     orgs: mappedOrgs,
+        //     event_history: mappedEvents,
+        //   })
+        // );
+        console.log ({...data, avatar: imagePreview});
+      } catch (error) {
+        showSnackbar ('Something went wrong updating your profile.');
+      }
+    }
+  };
 
   return (
-    <AccountForm
-      submitHandler={submitHandler}
-      handleSubmit={handleSubmit}
-      register={register}
-      errors={errors}
-      AvatarPreview={<AvatarPreview userAvatar={userInfo.user.avatar} initialAvatar={`${userProfile.first_name[0]}${userProfile.last_name[0]}`}/>}
-      AvatarOptions={<AvatarOptions defaultAvatars={avatars} />}
-    />
+    <Fragment>
+      <AccountForm
+        submitHandler={submitHandler}
+        handleSubmit={handleSubmit}
+        register={register}
+        errors={errors}
+        showAvatarURLForm={showAvatarURLForm}
+        AvatarPreview={
+          <AvatarPreview imagePreview={imagePreview} initials={initials} />
+        }
+        AvatarOptions={
+          <AvatarOptions
+            defaultAvatars={avatars}
+            setImagePreview={setImagePreview}
+          />
+        }
+      />
+      <PasswordForm />
+    </Fragment>
   );
 };
 
