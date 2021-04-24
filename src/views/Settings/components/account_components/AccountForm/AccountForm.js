@@ -16,7 +16,8 @@ const AccountForm = ({
   handleSubmit,
   submitHandler,
   errors,
-  AvatarOptions
+  AvatarOptions,
+  AvatarPreview
 }) => {
   const classes = useStyles ();
 
@@ -48,6 +49,7 @@ const AccountForm = ({
             name="avatar"
             placeholder="Choose an avatar"
           />
+          {AvatarPreview}
           {AvatarOptions}
         </CardContent>
       </Card>

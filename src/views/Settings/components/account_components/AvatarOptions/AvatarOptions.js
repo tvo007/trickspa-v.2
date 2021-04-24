@@ -1,11 +1,11 @@
 //to be deleted
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import AvatarPreview from '../AvatarPreview/AvatarPreview';
+// import PropTypes from 'prop-types';
+// import AvatarPreview from '../AvatarPreview/AvatarPreview';
 import {
   Grid,
-  IconButton,
+  // IconButton,
   GridList,
   GridListTile,
   GridListTileBar,
@@ -13,8 +13,8 @@ import {
   Typography,
   ButtonBase,
 } from '@material-ui/core';
-import PhotoSizeSelectActualIcon
-  from '@material-ui/icons/PhotoSizeSelectActual';
+// import PhotoSizeSelectActualIcon
+//   from '@material-ui/icons/PhotoSizeSelectActual';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles (theme => ({
@@ -62,11 +62,6 @@ const AvatarOptions = ({defaultAvatars}) => {
           <GridListTileBar
             className={classes.gridListBar}
             title={avatar.name}
-            actionIcon={
-              <IconButton style={{color: 'rgba(255, 255, 255, 0.54)'}}>
-                <PhotoSizeSelectActualIcon />
-              </IconButton>
-            }
           />
         </ButtonBase>
       </GridListTile>
@@ -78,7 +73,6 @@ const AvatarOptions = ({defaultAvatars}) => {
 
   return (
     <Grid>
-      <AvatarPreview />
       <Typography>A button to reset your profile pic</Typography>
       <Typography>A typical form to enter in picture url</Typography>
       <GridList cellHeight={300}>
@@ -96,6 +90,6 @@ const AvatarOptions = ({defaultAvatars}) => {
   );
 };
 
-AvatarOptions.propTypes = {};
+// AvatarOptions.propTypes = {};
 
 export default AvatarOptions;

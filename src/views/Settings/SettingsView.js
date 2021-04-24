@@ -73,7 +73,13 @@ const SettingsView = ({
                     profileLoading={profileLoading}
                     isLoggedIn={isLoggedIn}
                   />
-                : <AccountSettings />}
+                : <AccountSettings
+                    userInfo={userInfo}
+                    userProfile={userProfile}
+                    profileLoaded={profileLoaded}
+                    profileLoading={profileLoading}
+                    isLoggedIn={isLoggedIn}
+                  />}
             </Grid>{' '}
           </Fragment>
         : null}
