@@ -17,19 +17,20 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-const AvatarPreview = ({userAvatar, initialAvatar}) => {
+const AvatarPreview = ({imagePreview, initials}) => {
   const classes = useStyles ();
   return (
     <div>
-      {userAvatar
-        ? <Typography>Avatar exists</Typography>
+      {imagePreview
+        ? <Avatar src={imagePreview} className={classes.avatar} />
         : <Avatar className={classes.avatar}>
-            {initialAvatar}
+            {initials}
           </Avatar>}
+
     </div>
   );
 };
 
-// AvatarPreview.propTypes = {};
+// imagePreview.propTypes = {};
 
 export default AvatarPreview;

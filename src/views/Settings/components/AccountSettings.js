@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import AccountForm from './account_components/AccountForm/AccountForm';
 import AvatarOptions from './account_components/AvatarOptions/AvatarOptions';
 import AvatarPreview from './account_components/AvatarPreview/AvatarPreview';
@@ -24,24 +24,54 @@ const AccountSettings = ({
 }) => {
   const dispatch = useDispatch ();
 
-  const defaultAvatars = useSelector (state => state.defaultAvatars);
-  const {
-    // loading: defaultAvatarsLoading,
-    // error: defaultAvatarsError,
-    // loaded: defaultAvatarsLoaded,
-    avatars,
-  } = defaultAvatars;
+  const {avatars, loaded: defaultAvatarsLoaded} = useSelector (
+    state => state.defaultAvatars
+  );
+  // const {
+  //   // loading: defaultAvatarsLoading,
+  //   // error: defaultAvatarsError,
+  //   // loaded: defaultAvatarsLoaded,
+  //   avatars,
+  // } = defaultAvatars;
+
+  const [imagePreview, setImagePreview] = useState ('');
+
+  const initials = JSON.parse (
+    JSON.stringify (`${userProfile.first_name[0]}${userProfile.last_name[0]}`)
+  );
 
   useEffect (
     () => {
+      if (!defaultAvatarsLoaded)
+        try {
+          dispatch (getDefaultAvatars ());
+        } catch (error) {
+          showSnackbar (error);
+        }
+    },
+    [dispatch, defaultAvatarsLoaded]
+  ); //default avatar loader
+
+  useEffect (() => {
+    let mounted = true;
+    if (profileLoaded) {
       try {
-        dispatch (getDefaultAvatars ());
+        let userInfoCopy = {...userInfo.user};
+        const avatarCopy = userInfoCopy.avatar !== null &&
+          userInfoCopy.avatar !== ''
+          ? userInfoCopy.avatar
+          : '';
+        setImagePreview (avatarCopy);
       } catch (error) {
         showSnackbar (error);
       }
-    },
-    [dispatch]
-  );
+    }
+    return function cleanup () {
+      mounted = false;
+    };
+  }, []);
+
+  //init once
 
   const {register, handleSubmit, errors} = useForm ({
     resolver: yupResolver (schema),
@@ -55,8 +85,18 @@ const AccountSettings = ({
       handleSubmit={handleSubmit}
       register={register}
       errors={errors}
-      AvatarPreview={<AvatarPreview userAvatar={userInfo.user.avatar} initialAvatar={`${userProfile.first_name[0]}${userProfile.last_name[0]}`}/>}
-      AvatarOptions={<AvatarOptions defaultAvatars={avatars} />}
+      AvatarPreview={
+        <AvatarPreview
+          imagePreview={imagePreview}
+          initials={initials}
+        />
+      }
+      AvatarOptions={
+        <AvatarOptions
+          defaultAvatars={avatars}
+          setImagePreview={setImagePreview}
+        />
+      }
     />
   );
 };
