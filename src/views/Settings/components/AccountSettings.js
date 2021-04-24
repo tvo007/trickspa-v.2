@@ -37,7 +37,7 @@ const AccountSettings = ({
 
   const [imagePreview, setImagePreview] = useState ('');
 
-  const [showAvatarURLForm, setShowAvatarURLForm] = useState(false)
+  const [showAvatarURLForm, setShowAvatarURLForm] = useState (false);
 
   const initials = JSON.parse (
     JSON.stringify (`${userProfile.first_name[0]}${userProfile.last_name[0]}`)
@@ -80,7 +80,7 @@ const AccountSettings = ({
     resolver: yupResolver (schema),
     defaultValues: {
       username: userInfo.user.username || '',
-      avatar: userInfo.user.avatar || ''
+      avatar: userInfo.user.avatar || '',
       // password: '',
     },
   });
@@ -106,6 +106,8 @@ const AccountSettings = ({
       }
     }
   };
+
+  //todo: add tab setting for user to enter a custom url link for an avatar picture
 
   return (
     <Fragment>
