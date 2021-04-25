@@ -117,6 +117,8 @@ const AccountSettings = ({
         register={register}
         errors={errors}
         showAvatarURLForm={showAvatarURLForm}
+        setShowAvatarURLForm={setShowAvatarURLForm}
+
         AvatarPreview={
           <AvatarPreview imagePreview={imagePreview} initials={initials} />
         }
