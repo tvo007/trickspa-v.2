@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 // import PropTypes from 'prop-types';
 import {
   Card,
@@ -6,6 +6,7 @@ import {
   CardContent,
   Button,
   TextField,
+
   // Typography,
 } from '@material-ui/core';
 
@@ -19,6 +20,7 @@ const AccountForm = ({
   AvatarOptions,
   AvatarPreview,
   showAvatarURLForm,
+  setShowAvatarURLForm,
 }) => {
   const classes = useStyles ();
 
@@ -41,6 +43,13 @@ const AccountForm = ({
       <Card className={classes.card}>
         <CardHeader title="Avatar" />
         <CardContent className={classes.formContent}>
+          {AvatarPreview}
+          <Button
+            variant="contained"
+            onClick={() => setShowAvatarURLForm (!showAvatarURLForm)}
+          >
+            {showAvatarURLForm ? 'Pick from default avatars': 'Enter in a url link'}
+          </Button>
           {showAvatarURLForm
             ? <TextField
                 error={errors.avatar ? true : false}
@@ -51,9 +60,10 @@ const AccountForm = ({
                 name="avatar"
                 placeholder="Choose an avatar"
               />
-            : null}
-          {AvatarPreview}
-          {AvatarOptions}
+            : <Fragment>
+                {AvatarOptions}
+              </Fragment>}
+
         </CardContent>
       </Card>
       {/* <Card className={classes.card}>
