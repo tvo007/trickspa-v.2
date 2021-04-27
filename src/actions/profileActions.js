@@ -13,6 +13,8 @@ import {
 } from '../constants/profileConstants';
 import api from '../utils/api';
 
+// axios.defaults.withCredentials = true;
+
 export const getProfile = profileSlug => async (dispatch, getState) => {
   try {
     //if not the same reset state and then.....

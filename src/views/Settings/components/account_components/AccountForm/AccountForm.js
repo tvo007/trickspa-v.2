@@ -6,7 +6,6 @@ import {
   CardContent,
   Button,
   TextField,
-
   // Typography,
 } from '@material-ui/core';
 
@@ -44,25 +43,8 @@ const AccountForm = ({
         <CardHeader title="Avatar" />
         <CardContent className={classes.formContent}>
           {AvatarPreview}
-          <Button
-            variant="contained"
-            onClick={() => setShowAvatarURLForm (!showAvatarURLForm)}
-          >
-            {showAvatarURLForm ? 'Pick from default avatars': 'Enter in a url link'}
-          </Button>
-          {showAvatarURLForm
-            ? <TextField
-                error={errors.avatar ? true : false}
-                helperText={errors.avatar ? errors.avatar.message : null}
-                id="avatar"
-                inputRef={register}
-                label="Avatar"
-                name="avatar"
-                placeholder="Choose an avatar"
-              />
-            : <Fragment>
-                {AvatarOptions}
-              </Fragment>}
+
+          {AvatarOptions}
 
         </CardContent>
       </Card>

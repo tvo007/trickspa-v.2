@@ -1,6 +1,6 @@
 //to be deleted
 
-import React from 'react';
+import React, {useState} from 'react';
 // import PropTypes from 'prop-types';
 // import AvatarPreview from '../AvatarPreview/AvatarPreview';
 import {
@@ -12,12 +12,19 @@ import {
   ListSubheader,
   Typography,
   ButtonBase,
+  Tabs,
+  Tab,
 } from '@material-ui/core';
 // import PhotoSizeSelectActualIcon
 //   from '@material-ui/icons/PhotoSizeSelectActual';
 import {makeStyles} from '@material-ui/core/styles';
+import DefaultAvatars from '../DefaultAvatars/DefaultAvatars';
+import AvatarURLForm from '../AvatarURLForm/AvatarURLForm';
 
 const useStyles = makeStyles (theme => ({
+  root: {
+    height: '60vh',
+  },
   buttonBase: {
     // position: 'center',
     [theme.breakpoints.down ('xs')]: {
@@ -48,42 +55,66 @@ const useStyles = makeStyles (theme => ({
 
 //todo: useMediaquery to change cell row number and change image size
 
-const AvatarOptions = ({defaultAvatars, setImagePreview}) => {
-  const classes = useStyles ();
-  const showAvatars = defaultAvatars.map (avatar => {
-    return (
-      <GridListTile key={avatar.id}>
-        <ButtonBase
-          className={classes.buttonBase}
-          onClick={() => setImagePreview (avatar.url)}
-        >
-          <img src={avatar.url} alt="Loading" className={classes.img} />
-          <GridListTileBar
-            className={classes.gridListBar}
-            title={avatar.name}
-          />
-        </ButtonBase>
-      </GridListTile>
-    );
-    // <ButtonBase focusRipple key={avatar.id}>
-    // <img src={avatar.url} alt="Loading" />
-    // </ButtonBase>
-  });
+function TabPanel (props) {
+  const {children, value, index, ...other} = props;
 
   return (
-    <Grid>
-      {/* <Typography>A button to reset your profile pic</Typography>
-      <Typography>A typical form to enter in picture url</Typography> */}
-      <GridList cellHeight={250}>
-        <GridListTile key="Subheader" cols={2} style={{height: 'auto'}}>
-          <ListSubheader component="div">
-            <Typography>Default Avatars</Typography>
-          </ListSubheader>
-        </GridListTile>
+    <Grid role="tabpanel" hidden={value !== index} id={index}>
+      {value === index && <Grid>{children}</Grid>}
+    </Grid>
+  );
+}
 
-        {showAvatars}
+const AvatarOptions = ({defaultAvatars, setImagePreview}) => {
+  const [value, setValue] = useState (0);
 
-      </GridList>
+  const handleChange = (event, newValue) => {
+    setValue (newValue);
+  };
+
+  const handleChangeIndex = index => {
+    setValue (index);
+  };
+
+  const classes = useStyles ();
+
+  return (
+    <Grid className={classes.root}>
+      <Grid>
+
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="fullWidth"
+          indicatorColor="primary"
+        >
+          <Tab value={0} label="Default Avatars" />
+          <Tab value={1} label="Custom URL" />
+          <Tab value={2} label="Other Options" />
+        </Tabs>
+
+      </Grid>
+      <TabPanel value={value} index={0}>
+        <DefaultAvatars
+          defaultAvatars={defaultAvatars}
+          classes={classes}
+          setImagePreview={setImagePreview}
+        />
+
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <AvatarURLForm />
+
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <Typography>
+          Reset Image
+        </Typography>
+        <Typography>
+          Use Initials
+        </Typography>
+
+      </TabPanel>
 
     </Grid>
   );
