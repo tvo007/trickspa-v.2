@@ -10,6 +10,7 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
+  USER_LOGIN_UPDATE,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -19,18 +20,17 @@ import {
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_DELETE_FAIL,
-  USER_UPDATE_RESET,
-  USER_UPDATE_REQUEST,
-  USER_UPDATE_SUCCESS,
-  USER_UPDATE_FAIL,
+  USER_ACCOUNT_UPDATE_REQUEST,
+  USER_ACCOUNT_UPDATE_SUCCESS,
+  USER_ACCOUNT_UPDATE_FAIL,
+  USER_ACCOUNT_UPDATE_RESET,
   // USER_UPDATE_PROFILE_RESET,
   USER_LOGOUT_REQUEST,
   USER_LOGOUT_SUCCESS,
   USER_LOGOUT_FAIL,
   CLEAR_USER,
-  CLEAR_LOGOUT_STATE
+  CLEAR_LOGOUT_STATE,
 } from '../constants/userConstants';
-
 //in progress
 
 export const userLoginReducer = (state = {userInfo: {}}, action) => {
@@ -41,8 +41,10 @@ export const userLoginReducer = (state = {userInfo: {}}, action) => {
       return {loading: false, loaded: true, userInfo: action.payload};
     case USER_LOGIN_FAIL:
       return {loading: false, loaded: false, error: action.payload};
-    case CLEAR_USER: 
-      return {}
+    case USER_LOGIN_UPDATE:
+      return {...state, userInfo: {...state.userInfo, user: action.payload}};
+    case CLEAR_USER:
+      return {};
     default:
       return state;
   }
@@ -57,7 +59,7 @@ export const userLogoutReducer = (state = {}, action) => {
     case USER_LOGOUT_FAIL:
       return {loading: false, error: action.payload};
     case CLEAR_LOGOUT_STATE: {
-      return {}
+      return {};
     }
     default:
       return state;
@@ -139,15 +141,15 @@ export const userDeleteReducer = (state = {}, action) => {
   }
 };
 
-export const userUpdateReducer = (state = {user: {}}, action) => {
+export const userAccountUpdateReducer = (state = {userInfo: {}}, action) => {
   switch (action.type) {
-    case USER_UPDATE_REQUEST:
+    case USER_ACCOUNT_UPDATE_REQUEST:
       return {loading: true};
-    case USER_UPDATE_SUCCESS:
+    case USER_ACCOUNT_UPDATE_SUCCESS:
       return {loading: false, success: true};
-    case USER_UPDATE_FAIL:
+    case USER_ACCOUNT_UPDATE_FAIL:
       return {loading: false, error: action.payload};
-    case USER_UPDATE_RESET:
+    case USER_ACCOUNT_UPDATE_RESET:
       return {
         user: {},
       };

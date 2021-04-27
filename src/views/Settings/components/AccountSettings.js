@@ -5,6 +5,7 @@ import AvatarPreview from './account_components/AvatarPreview/AvatarPreview';
 import {useSelector, useDispatch} from 'react-redux';
 import {getDefaultAvatars} from '../../../actions/defaultAvatarActions';
 import {showSnackbar} from '../../../actions/alertActions';
+import {updateUserAccount} from '../../../actions/userActions';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -80,7 +81,7 @@ const AccountSettings = ({
     resolver: yupResolver (schema),
     defaultValues: {
       username: userInfo.user.username || '',
-      avatar: userInfo.user.avatar || '',
+      avatar: '',
       // password: '',
     },
   });
@@ -93,14 +94,13 @@ const AccountSettings = ({
       dispatch (showSnackbar ('Please try again'));
     } else if (profileLoaded) {
       try {
-        // dispatch (
-        //   updateProfile (userProfile.id, {
-        //     ...data,
-        //     orgs: mappedOrgs,
-        //     event_history: mappedEvents,
-        //   })
-        // );
-        console.log ({...data, avatar: imagePreview});
+        dispatch (
+          updateUserAccount (userInfo.user.id, {
+            ...data,
+            avatar: imagePreview,
+          })
+        );
+        // console.log ({...data, avatar: `https://res.cloudinary.com/ddj5orpun/image/upload/v1619048833/moonface_1_o7nn7w.jpg`});
       } catch (error) {
         showSnackbar ('Something went wrong updating your profile.');
       }
@@ -118,7 +118,6 @@ const AccountSettings = ({
         errors={errors}
         showAvatarURLForm={showAvatarURLForm}
         setShowAvatarURLForm={setShowAvatarURLForm}
-
         AvatarPreview={
           <AvatarPreview imagePreview={imagePreview} initials={initials} />
         }

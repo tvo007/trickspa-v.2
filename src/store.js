@@ -16,7 +16,8 @@ import {
 import {
   userLoginReducer,
   userLogoutReducer,
-  userRegisterReducer
+  userRegisterReducer,
+  userAccountUpdateReducer
 } from './reducers/userReducers'
 import {
   alertReducer
@@ -44,6 +45,7 @@ const reducer = combineReducers ({
   alert: alertReducer,
   userProfile: userProfileReducer,
   updateProfile: updateProfileReducer,
+  updateAccount: userAccountUpdateReducer,
   defaultAvatars: defaultAvatarsReducer,
 });
 
