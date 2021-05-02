@@ -95,7 +95,7 @@ export const logout = () => async dispatch => {
       },
     };
 
-    const {data} = await axios.post (`${api}/logout`, config);
+    const {data} = await axios.post (`${api}/auth/logout`, config);
 
     dispatch ({
       type: USER_LOGOUT_SUCCESS,
@@ -281,10 +281,80 @@ export const updateUserAccount = (id, formData) => async (
 
     // dispatch ({type: USER_ACCOUNT_UPDATE_SUCCESS});
 
-    dispatch ({type: USER_ACCOUNT_UPDATE_SUCCESS, payload: data});
+    dispatch ({type: USER_ACCOUNT_UPDATE_SUCCESS});
 
     dispatch ({type: USER_LOGIN_UPDATE, payload: data});
     //updates userLogin state upon successful update
+
+    // dispatch ({type: USER_ACCOUNT_UPDATE_RESET});
+  } catch (error) {
+    const message = error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+    if (message === 'Not authorized, token failed') {
+      dispatch (logout ());
+    }
+    dispatch ({
+      type: USER_ACCOUNT_UPDATE_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const updatePassword = ({
+  email,
+  password,
+  newPassword,
+  confirmPassword,
+}) => async (dispatch, getState) => {
+  try {
+    dispatch ({
+      type: USER_ACCOUNT_UPDATE_REQUEST,
+    });
+
+    const {userLogin: {userInfo}} = getState ();
+
+    const emailLowerCased = email.toLowerCase ();
+
+    if (emailLowerCased === userInfo.user.email) {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          withCredentials: true,
+          Authorization: `Bearer ${userInfo.token}`,
+          // 'Access-Control-Allow-Credentials': true,
+          // 'Access-Control-Allow-Origin': true,
+        },
+      };
+
+      const {data} = await axios.post (
+        `${api}/auth/pwreset`,
+        {
+          identifier: emailLowerCased,
+          password: password,
+          newPassword: newPassword,
+          confirmPassword: confirmPassword,
+        },
+        config
+      );
+
+      dispatch ({type: USER_ACCOUNT_UPDATE_SUCCESS});
+      //updates userLogin state upon successful update
+      dispatch ({type: USER_LOGIN_SUCCESS, payload: data});
+
+      dispatch ({type: SET_ALERT, message: 'Password updated successfully'});
+    } else {
+      dispatch ({
+        type: USER_ACCOUNT_UPDATE_FAIL,
+        payload: 'Email does not match currnent user.',
+      });
+      dispatch ({
+        type: SET_ALERT,
+        message: 'Email does not match current user.',
+      });
+    }
+
+    // dispatch ({type: USER_ACCOUNT_UPDATE_SUCCESS});
 
     // dispatch ({type: USER_ACCOUNT_UPDATE_RESET});
   } catch (error) {

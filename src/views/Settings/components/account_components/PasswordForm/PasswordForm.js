@@ -1,43 +1,66 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 // import PropTypes from 'prop-types';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
+import {useDispatch, useSelector} from 'react-redux';
+import {updatePassword} from '../../../../../actions/userActions';
 import * as yup from 'yup';
 import {
   Card,
   CardHeader,
   CardContent,
   Button,
-  Typography,
   TextField,
   // Typography,
 } from '@material-ui/core';
 import useStyles from '../../../FormStyles';
+import {
+  USER_ACCOUNT_UPDATE_RESET,
+} from '../../../../../constants/userConstants';
 
 const schema = yup.object ().shape ({
+  email: yup.string (),
   currentPassword: yup.string (),
   newPassword: yup.string (),
-  newPasswordConfirm: yup.string (),
-
-  // password: yup.string (),
-  avatar: yup.string (),
+  confirmPassword: yup.string (),
 });
 
 const PasswordForm = props => {
-  const {register, handleSubmit, errors} = useForm ({
+  const dispatch = useDispatch ();
+  const {loading, success} = useSelector (state => state.updateAccount);
+  const {register, handleSubmit, errors, reset} = useForm ({
     resolver: yupResolver (schema),
     defaultValues: {
-      currentPassword: '',
+      email: '',
+      password: '',
       newPassword: '',
-      newPasswordConfirm: '',
+      confirmPassword: '',
       // password: '',
     },
   });
-  const classes = useStyles ();
+
+  useEffect (
+    () => {
+      if (success) {
+        dispatch ({type: USER_ACCOUNT_UPDATE_RESET});
+        reset ({
+          email: '',
+          password: '',
+          newPassword: '',
+          confirmPassword: '',
+        });
+      }
+    },
+    [dispatch, success, reset]
+  );
+
+  //listener that resets password fields on success
 
   const submitHandler = data => {
-    // console.log (data);
+    // console.log(data)
+    dispatch (updatePassword (data));
   };
+  const classes = useStyles ();
   return (
     <div>
       <form onSubmit={handleSubmit (submitHandler)}>
@@ -46,14 +69,21 @@ const PasswordForm = props => {
           <CardHeader title="Password" />
           <CardContent className={classes.formContent}>
             <TextField
-              error={errors.currentPassword ? true : false}
-              helperText={
-                errors.currentPassword ? errors.currentPassword.message : null
-              }
-              id="currentPassword"
+              error={errors.email ? true : false}
+              helperText={errors.email ? errors.email.message : null}
+              id="email"
+              inputRef={register}
+              label="Your email"
+              name="email"
+              placeholder="Enter your current email"
+            />
+            <TextField
+              error={errors.password ? true : false}
+              helperText={errors.password ? errors.password.message : null}
+              id="password"
               inputRef={register}
               label="Current Password"
-              name="currentPassword"
+              name="password"
               placeholder="Enter your current password"
             />
             <TextField
@@ -68,16 +98,14 @@ const PasswordForm = props => {
               placeholder="Enter your new password"
             />
             <TextField
-              error={errors.newPasswordConfirm ? true : false}
+              error={errors.confirmPassword ? true : false}
               helperText={
-                errors.newPasswordConfirm
-                  ? errors.newPasswordConfirm.message
-                  : null
+                errors.confirmPassword ? errors.confirmPassword.message : null
               }
-              id="newPasswordConfirm"
+              id="confirmPassword"
               inputRef={register}
               label="New Password Confirmation"
-              name="newPasswordConfirm"
+              name="confirmPassword"
               placeholder="Confirm your new password"
             />
             <Button

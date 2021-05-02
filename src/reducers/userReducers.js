@@ -131,7 +131,7 @@ export const userListReducer = (state = {users: []}, action) => {
 export const userDeleteReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_DELETE_REQUEST:
-      return {loading: true};
+      return {loading: true, success: false};
     case USER_DELETE_SUCCESS:
       return {loading: false, success: true};
     case USER_DELETE_FAIL:
@@ -141,18 +141,16 @@ export const userDeleteReducer = (state = {}, action) => {
   }
 };
 
-export const userAccountUpdateReducer = (state = {userInfo: {}}, action) => {
+export const userAccountUpdateReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_ACCOUNT_UPDATE_REQUEST:
-      return {loading: true};
+      return {loading: true, success: false};
     case USER_ACCOUNT_UPDATE_SUCCESS:
       return {loading: false, success: true};
     case USER_ACCOUNT_UPDATE_FAIL:
       return {loading: false, error: action.payload};
     case USER_ACCOUNT_UPDATE_RESET:
-      return {
-        user: {},
-      };
+      return {loading: false, success: false};
     default:
       return state;
   }
