@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Fragment} from 'react';
+import React, {useEffect, useState} from 'react';
 import AccountForm from './account_components/AccountForm/AccountForm';
 import AvatarOptions from './account_components/AvatarOptions/AvatarOptions';
 import AvatarPreview from './account_components/AvatarPreview/AvatarPreview';
@@ -10,6 +10,7 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import PasswordForm from './account_components/PasswordForm/PasswordForm';
+import {Grid} from '@material-ui/core';
 
 const schema = yup.object ().shape ({
   username: yup.string (),
@@ -110,26 +111,31 @@ const AccountSettings = ({
   //todo: add tab setting for user to enter a custom url link for an avatar picture
 
   return (
-    <Fragment>
-      <AccountForm
-        submitHandler={submitHandler}
-        handleSubmit={handleSubmit}
-        register={register}
-        errors={errors}
-        showAvatarURLForm={showAvatarURLForm}
-        setShowAvatarURLForm={setShowAvatarURLForm}
-        AvatarPreview={
-          <AvatarPreview imagePreview={imagePreview} initials={initials} />
-        }
-        AvatarOptions={
-          <AvatarOptions
-            defaultAvatars={avatars}
-            setImagePreview={setImagePreview}
-          />
-        }
-      />
-      <PasswordForm />
-    </Fragment>
+    <Grid container direction="column" spacing={2}>
+      <Grid item>
+        <AccountForm
+          submitHandler={submitHandler}
+          handleSubmit={handleSubmit}
+          register={register}
+          errors={errors}
+          showAvatarURLForm={showAvatarURLForm}
+          setShowAvatarURLForm={setShowAvatarURLForm}
+          AvatarPreview={
+            <AvatarPreview imagePreview={imagePreview} initials={initials} />
+          }
+          AvatarOptions={
+            <AvatarOptions
+              defaultAvatars={avatars}
+              setImagePreview={setImagePreview}
+            />
+          }
+        />
+      </Grid>
+      <Grid item>
+        <PasswordForm />
+      </Grid>
+
+    </Grid>
   );
 };
 

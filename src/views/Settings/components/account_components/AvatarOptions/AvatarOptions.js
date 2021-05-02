@@ -1,25 +1,10 @@
-//to be deleted
-
 import React, {useState} from 'react';
-// import PropTypes from 'prop-types';
-// import AvatarPreview from '../AvatarPreview/AvatarPreview';
-import {
-  Grid,
-  // IconButton,
-  GridList,
-  GridListTile,
-  GridListTileBar,
-  ListSubheader,
-  Typography,
-  ButtonBase,
-  Tabs,
-  Tab,
-} from '@material-ui/core';
-// import PhotoSizeSelectActualIcon
-//   from '@material-ui/icons/PhotoSizeSelectActual';
+
+import {Grid, Tabs, Tab} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import DefaultAvatars from '../DefaultAvatars/DefaultAvatars';
 import AvatarURLForm from '../AvatarURLForm/AvatarURLForm';
+import AvatarOtherOptions from '../AvatarOtherOptions/AvatarOtherOptions';
 
 const useStyles = makeStyles (theme => ({
   root: {
@@ -31,8 +16,8 @@ const useStyles = makeStyles (theme => ({
       width: '100% !important', // Overrides inline-style
       height: 100,
     },
-    height: '100%',
-    width: '100%',
+    height: '150px',
+    width: '225px',
     opacity: 0.75,
     position: 'relative',
     '&:hover': {
@@ -46,17 +31,24 @@ const useStyles = makeStyles (theme => ({
   },
   gridListBar: {
     visibility: 'hidden',
+    marginBottom: '2rem',
+    height: '20%',
+    width: 'auto',
   },
   img: {
     backgroundPosition: 'center',
+    minHeight: '100%',
     maxHeight: '100%',
+    minWidth: '100%',
+    maxWidth: '100%',
+    objectFit: 'fit',
   },
 }));
 
 //todo: useMediaquery to change cell row number and change image size
 
 function TabPanel (props) {
-  const {children, value, index, ...other} = props;
+  const {children, value, index} = props;
 
   return (
     <Grid role="tabpanel" hidden={value !== index} id={index}>
@@ -72,9 +64,9 @@ const AvatarOptions = ({defaultAvatars, setImagePreview}) => {
     setValue (newValue);
   };
 
-  const handleChangeIndex = index => {
-    setValue (index);
-  };
+  // const handleChangeIndex = index => {
+  //   setValue (index);
+  // };
 
   const classes = useStyles ();
 
@@ -103,16 +95,11 @@ const AvatarOptions = ({defaultAvatars, setImagePreview}) => {
 
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <AvatarURLForm />
+        <AvatarURLForm setImagePreview={setImagePreview} />
 
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Typography>
-          Reset Image
-        </Typography>
-        <Typography>
-          Use Initials
-        </Typography>
+        <AvatarOtherOptions setImagePreview={setImagePreview} />
 
       </TabPanel>
 

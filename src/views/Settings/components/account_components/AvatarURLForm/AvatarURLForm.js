@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 // import PropTypes from 'prop-types';
 import {TextField, Button} from '@material-ui/core';
 import {useForm} from 'react-hook-form';
@@ -14,7 +14,7 @@ const schema = yup.object ().shape ({
   // password: yup.string (),
 });
 
-const AvatarURLForm = ({props}) => {
+const AvatarURLForm = ({setImagePreview}) => {
   const classes = useStyles ();
   const {register, handleSubmit, errors} = useForm ({
     resolver: yupResolver (schema),
@@ -23,8 +23,12 @@ const AvatarURLForm = ({props}) => {
       // password: '',
     },
   });
+
+  const submitHandler = data => {
+    setImagePreview (data.url);
+  };
   return (
-    <form>
+    <Fragment>
       <TextField
         error={errors.url ? true : false}
         helperText={errors.url ? errors.url.message : null}
@@ -39,10 +43,11 @@ const AvatarURLForm = ({props}) => {
         className={classes.submitButton}
         color="primary"
         variant="contained"
+        onClick={handleSubmit (submitHandler)}
       >
         Preview Image
       </Button>
-    </form>
+    </Fragment>
   );
 };
 
