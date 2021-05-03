@@ -30,12 +30,6 @@ const AccountSettings = ({
   const {avatars, loaded: defaultAvatarsLoaded} = useSelector (
     state => state.defaultAvatars
   );
-  // const {
-  //   // loading: defaultAvatarsLoading,
-  //   // error: defaultAvatarsError,
-  //   // loaded: defaultAvatarsLoaded,
-  //   avatars,
-  // } = defaultAvatars;
 
   const [imagePreview, setImagePreview] = useState ('');
 
