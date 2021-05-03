@@ -39,7 +39,7 @@ const SettingsView = ({
             <Grid item xs={12}>
               <PageHeading title={`Settings for ${userInfo.user.username}`} />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} md={4}>
               <ButtonGroup
                 aria-label="vertical outlined primary button group"
                 color="primary"
@@ -64,7 +64,7 @@ const SettingsView = ({
                 </Button>
               </ButtonGroup>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={12} md={8}>
               {profileSettingsActive
                 ? <ProfileSettings
                     userInfo={userInfo}
