@@ -48,59 +48,6 @@ const AccountForm = ({
 
         </CardContent>
       </Card>
-      {/* <Card className={classes.card}>
-        <CardHeader title="Password" />
-        <CardContent className={classes.formContent}>
-          <TextField
-            error={errors.currentPassword ? true : false}
-            fullWidth
-            helperText={
-              errors.currentPassword ? errors.currentPassword.message : null
-            }
-            id="currentPassword"
-            inputRef={register}
-            label="Current Password"
-            name="currentPassword"
-            placeholder="Enter your current password"
-          />
-          <TextField
-            error={errors.newPassword ? true : false}
-            helperText={errors.newPassword ? errors.newPassword.message : null}
-            id="newPassword"
-            inputRef={register}
-            label="Password"
-            name="newPassword"
-            placeholder="Enter your new password"
-          />
-          <TextField
-            error={errors.confirmNewPassword ? true : false}
-            helperText={
-              errors.confirmNewPassword
-                ? errors.confirmNewPassword.message
-                : null
-            }
-            id="confirmNewPassword"
-            inputRef={register}
-            label="Confirm new password"
-            name="confirmNewPassword"
-            placeholder="Enter your new password to confirm"
-          />
-        </CardContent>
-      </Card> */}
-      {/* <Card className={classes.card}>
-        <CardHeader title="Email" />
-        <CardContent className={classes.formContent}>
-          <TextField
-            error={errors.email ? true : false}
-            helperText={errors.email ? errors.email.message : null}
-            id="email"
-            inputRef={register}
-            label="Email"
-            name="email"
-            placeholder="Enter your email"
-          />
-        </CardContent>
-      </Card> */}
       <Card className={classes.submitCard}>
         <Button
           className={classes.submitButton}
