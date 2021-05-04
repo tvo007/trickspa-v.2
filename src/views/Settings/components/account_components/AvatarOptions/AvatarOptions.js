@@ -9,40 +9,7 @@ import AvatarOtherOptions from '../AvatarOtherOptions/AvatarOtherOptions';
 const useStyles = makeStyles (theme => ({
   root: {
     height: '60vh',
-  },
-  buttonBase: {
-    // position: 'center',
-    [theme.breakpoints.down ('xs')]: {
-      width: '100% !important', // Overrides inline-style
-      height: 100,
-    },
-    height: '150px',
-    width: '225px',
-    opacity: 0.75,
-    position: 'relative',
-    '&:hover': {
-      zIndex: 1,
-      opacity: 1,
-      transition: theme.transitions.create ('opacity'),
-      '& $gridListBar': {
-        visibility: 'visible',
-      },
-    },
-  },
-  gridListBar: {
-    visibility: 'hidden',
-    marginBottom: '2rem',
-    height: '20%',
-    width: 'auto',
-  },
-  img: {
-    backgroundPosition: 'center',
-    minHeight: '100%',
-    maxHeight: '100%',
-    minWidth: '100%',
-    maxWidth: '100%',
-    objectFit: 'fit',
-  },
+  }
 }));
 
 //todo: useMediaquery to change cell row number and change image size
