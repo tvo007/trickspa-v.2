@@ -5,12 +5,43 @@ import {
   GridListTileBar,
   GridList,
 } from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
 // import PropTypes from 'prop-types'
 
-const DefaultAvatars = ({defaultAvatars, classes, setImagePreview}) => {
+const useStyles = makeStyles (theme => ({
+  buttonBase: {
+    // position: 'center',
+    height: '9.38rem',
+    width: '14.06rem',
+    opacity: 0.75,
+    position: 'relative',
+    '&:hover': {
+      zIndex: 1,
+      opacity: 1,
+      transition: theme.transitions.create ('opacity'),
+      '& $gridListBar': {
+        visibility: 'visible',
+      },
+    },
+  },
+  gridListBar: {
+    visibility: 'hidden',
+    marginBottom: '2rem',
+    height: '20%',
+    width: 'auto',
+  },
+  img: {
+    minHeight: '100%',
+    minWidth: '100%',
+    objectFit: 'cover',
+  },
+}));
+
+const DefaultAvatars = ({defaultAvatars, setImagePreview}) => {
+  const classes = useStyles();
   const showAvatars = defaultAvatars.map (avatar => {
     return (
-      <GridListTile key={avatar.id}>
+      <GridListTile key={avatar.id} style={{height: 'auto'}}>
         <ButtonBase
           className={classes.buttonBase}
           onClick={() => setImagePreview (avatar.url)}
