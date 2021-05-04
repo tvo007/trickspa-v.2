@@ -10,14 +10,9 @@ import {
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
-  // USER_UPDATE_PROFILE_FAIL,
-  // USER_UPDATE_PROFILE_REQUEST,
-  // USER_UPDATE_PROFILE_SUCCESS,
-  // USER_DETAILS_RESET,
   USER_LIST_FAIL,
   USER_LIST_SUCCESS,
   USER_LIST_REQUEST,
-  // USER_LIST_RESET,
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_DELETE_FAIL,
@@ -31,7 +26,7 @@ import {
   CLEAR_USER,
   CLEAR_LOGOUT_STATE,
 } from '../constants/userConstants';
-import {CLEAR_PROFILE} from '../constants/profileConstants';
+import {CLEAR_PROFILE, CLEAR_MY_SLUG} from '../constants/profileConstants';
 import {SET_ALERT} from '../constants/alertConstants';
 import api from '../utils/api';
 
@@ -109,8 +104,12 @@ export const logout = () => async dispatch => {
       type: CLEAR_PROFILE,
     });
     dispatch ({
+      type: CLEAR_MY_SLUG,
+    });
+    dispatch ({
       type: CLEAR_LOGOUT_STATE,
     });
+    // document.location.href = '/forums';
   } catch (error) {
     dispatch ({
       type: USER_LOGOUT_FAIL,

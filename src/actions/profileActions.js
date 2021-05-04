@@ -7,9 +7,7 @@ import {
   PROFILE_UPDATE_REQUEST,
   PROFILE_UPDATE_SUCCESS,
   PROFILE_UPDATE_FAIL,
-  // MY_PROFILE_GET_REQUEST,
-  // MY_PROFILE_GET_FAIL,
-  // MY_PROFILE_GET_SUCCESS,
+  CLEAR_PROFILE,
 } from '../constants/profileConstants';
 import api from '../utils/api';
 
@@ -18,6 +16,7 @@ import api from '../utils/api';
 export const getProfile = profileSlug => async (dispatch, getState) => {
   try {
     //if not the same reset state and then.....
+
     dispatch ({
       type: PROFILE_GET_REQUEST,
     });
@@ -41,34 +40,21 @@ export const getProfile = profileSlug => async (dispatch, getState) => {
   }
 };
 
-export const getMyProfile = uuid => async (dispatch, getState) => {
+export const getMyProfile = profileSlug => async (dispatch, getState) => {
   try {
     //if not the same reset state and then.....
+
     dispatch ({
       type: PROFILE_GET_REQUEST,
     });
 
-    // const {userLogin: {userInfo}} = getState ();
+    const {data} = await axios.get (`${api}/profiles/slug/${profileSlug}`);
 
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        withCredentials: true,
-        // 'Access-Control-Allow-Credentials': true,
-      },
-    };
-
-    const {data} = await axios.get (
-      `${api}/profiles?users_permissions_user.uuid=${uuid}`,
-      config
-    );
-
-    //works: `${api}/profiles?users_permissions_user.uuid=GP-vAwMnGsOJlQkl3CAXY`
-    //does not work: ${api}/profiles/uuid/GP-vAwMnGsOJlQkl3CAXY
+    //GETS STATE USERINFO HERE
 
     dispatch ({
       type: PROFILE_GET_SUCCESS,
-      payload: data[0],
+      payload: data,
     });
 
     dispatch ({
@@ -85,13 +71,13 @@ export const getMyProfile = uuid => async (dispatch, getState) => {
   }
 };
 
-export const getProfileAuth = (loginUsername, profileUsername) => async (
+export const getProfileAuth = (userInfoSlug, profileSlug) => async (
   dispatch,
   getState
 ) => {
   // const {userLogin: {userInfo}} = getState ();
   try {
-    if (loginUsername === profileUsername)
+    if (userInfoSlug === profileSlug)
       dispatch ({
         type: PROFILE_IS_OWNER,
       });
