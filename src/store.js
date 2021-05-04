@@ -17,18 +17,14 @@ import {
   userLoginReducer,
   userLogoutReducer,
   userRegisterReducer,
-  userAccountUpdateReducer
-} from './reducers/userReducers'
-import {
-  alertReducer
-} from './reducers/alertReducers'
+  userAccountUpdateReducer,
+} from './reducers/userReducers';
+import {alertReducer} from './reducers/alertReducers';
 import {
   userProfileReducer,
   updateProfileReducer,
-} from './reducers/profileReducers'
-import {
-  defaultAvatarsReducer
-} from './reducers/defaultAvatarReducers'
+} from './reducers/profileReducers';
+import {defaultAvatarsReducer} from './reducers/defaultAvatarReducers';
 //import setAuthToken from './utils/setAuthToken';
 
 const reducer = combineReducers ({
