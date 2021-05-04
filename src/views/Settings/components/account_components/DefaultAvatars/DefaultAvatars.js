@@ -9,13 +9,6 @@ import {makeStyles} from '@material-ui/core/styles';
 // import PropTypes from 'prop-types'
 
 const useStyles = makeStyles (theme => ({
-  gridList: {
-    '& .MuiGridListTile-root': {
-      [theme.breakpoints.down('xs')]: {
-        width: '100% !important',
-      }
-    }
-  },
   buttonBase: {
     // position: 'center',
     height: '9.38rem',
@@ -67,7 +60,7 @@ const DefaultAvatars = ({defaultAvatars, setImagePreview}) => {
   });
 
   return (
-    <GridList cellHeight={250} className={classes.gridList}>
+    <GridList cellHeight={250}>
       <GridListTile key="Subheader" cols={2} style={{height: 'auto'}} />
 
       {showAvatars}
