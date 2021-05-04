@@ -18,8 +18,8 @@ const useStyles = makeStyles (theme => ({
   },
   buttonBase: {
     // position: 'center',
-    height: '150px',
-    width: '225px',
+    height: '9.38rem',
+    width: '14.06rem',
     opacity: 0.75,
     position: 'relative',
     '&:hover': {
