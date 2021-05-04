@@ -49,7 +49,7 @@ const ProfileSettings = ({
     defaultValues: {
       name: `${userProfile.first_name} ${userProfile.last_name}` || '',
       avatar: userInfo.user.avatar || '',
-      alias: '',
+      alias: userProfile.alias || '',
       location: userProfile.location || '',
       bio: userProfile.bio || '',
       youtube: '',

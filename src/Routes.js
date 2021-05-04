@@ -6,7 +6,7 @@ import {Main, LandingLayout} from './layouts';
 
 import {
   Dashboard,
-  // Auth,
+  Error404,
   Landing,
   Forums,
   ForumSection,
@@ -34,20 +34,19 @@ const Routes = props => {
         exact
         layout={Main}
         path="/settings"
-        
       />
       <RouteWithLayout
-          component={MyProfile}
-          exact
-          layout={Main}
-          path="/profile/me"
-        />
-        <RouteWithLayout
-          component={Profile}
-          exact
-          layout={Main}
-          path="/profile/:profileSlug"
-        />
+        component={MyProfile}
+        exact
+        layout={Main}
+        path="/profile/me"
+      />
+      <RouteWithLayout
+        component={Profile}
+        exact
+        layout={Main}
+        path="/profile/:profileSlug"
+      />
       {/* 
          */}
 
@@ -79,6 +78,8 @@ const Routes = props => {
         layout={Main}
         path="/forums/:forumSlug/:postSlug"
       />
+
+      <RouteWithLayout component={Error404} exact layout={Main} path="/404" />
       {/* <RouteWithLayout
           component={Dummy}
           exact
