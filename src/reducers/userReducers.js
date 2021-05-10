@@ -44,7 +44,7 @@ export const userLoginReducer = (state = {userInfo: {}}, action) => {
     case USER_LOGIN_UPDATE:
       return {...state, userInfo: {...state.userInfo, user: action.payload}};
     case CLEAR_USER:
-      return {};
+      return {loading: false, loaded: false};
     default:
       return state;
   }

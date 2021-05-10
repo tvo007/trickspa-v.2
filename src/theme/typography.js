@@ -70,13 +70,14 @@ const typography = {
   },
   body2: {
     color: palette.text.secondary,
-    fontSize: '12px',
+    fontSize: '14px',
     letterSpacing: '-0.04px',
     lineHeight: '18px',
   },
   button: {
     color: palette.text.primary,
     fontSize: '14px',
+    textTransform: 'none'
   },
   caption: {
     color: palette.text.secondary,

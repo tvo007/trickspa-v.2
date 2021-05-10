@@ -33,6 +33,8 @@ const ProfileSettings = ({
 }) => {
   const dispatch = useDispatch ();
 
+  const history = useHistory ();
+
   const [mappedOrgs, setMappedOrgs] = useState ([]);
 
   const [mappedEvents, setMappedEvents] = useState ([]);
@@ -64,14 +66,15 @@ const ProfileSettings = ({
   useEffect (
     () => {
       if (successUpdate) {
-        dispatch (showSnackbar ('Update Successful!'));
         dispatch ({type: PROFILE_UPDATE_RESET});
         reset ();
+        history.push (`/profile/${userInfo.slug}`);
       } else if (updateProfileError) {
-        dispatch (showSnackbar ('Update profile error'));
+        dispatch ({type: PROFILE_UPDATE_RESET});
+        history.push ('/404');
       }
     },
-    [dispatch, successUpdate, updateProfileError, reset]
+    [dispatch, successUpdate, updateProfileError, reset, userInfo, history]
   );
 
   useEffect (
@@ -83,11 +86,12 @@ const ProfileSettings = ({
           setMappedOrgs (orgsCopy);
           // setMappedEvents (eventsCopy);
         } catch (error) {
+          history.push ('/404');
           showSnackbar (error);
         }
       }
     },
-    [profileLoaded, userProfile.orgs]
+    [profileLoaded, userProfile.orgs, history]
   );
 
   useEffect (
@@ -99,11 +103,12 @@ const ProfileSettings = ({
           // setMappedOrgs (orgsCopy);
           setMappedEvents (eventsCopy);
         } catch (error) {
+          history.push ('/404');
           showSnackbar (error);
         }
       }
     },
-    [profileLoaded, userProfile.event_history]
+    [profileLoaded, userProfile.event_history, history]
   );
 
   const submitHandler = data => {

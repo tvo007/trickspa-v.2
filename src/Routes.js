@@ -21,7 +21,7 @@ import {
 const Routes = props => {
   return (
     <Switch>
-      <Redirect exact from="/" to="/Dashboard" />
+      <Redirect exact from="/" to="/Forums" />
       <RouteWithLayout
         component={Dashboard}
         exact
