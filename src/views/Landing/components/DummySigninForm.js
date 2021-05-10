@@ -11,7 +11,7 @@ import {
 import useStyles from '../FormStyles';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../../../actions/userActions';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useLocation} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -34,15 +34,18 @@ const DummySigninForm = ({onClick}) => {
   const {loaded} = userLogin;
 
   const history = useHistory ();
+  const location = useLocation ();
   const dispatch = useDispatch ();
+
+  const redirect = location.search ? location.search.split ('=')[1] : '/';
 
   useEffect (
     () => {
       if (loaded) {
-        history.push ('/forums');
+        history.push (redirect);
       }
     },
-    [loaded, history]
+    [loaded, history, redirect]
   );
 
   // useEffect (
@@ -119,8 +122,19 @@ const DummySigninForm = ({onClick}) => {
               name="password"
               placeholder="Enter your password"
             />
-            <Button color="primary" variant="contained">
+            {/* <Button color="primary" variant="contained" type="submit">
               <input className={classes.submit} type="submit" value="Sign In" />
+
+            </Button> */}
+            <Button
+              color="primary"
+              variant="contained"
+              size="small"
+              type="submit"
+            >
+              <Typography color="textSecondary" variant="body2">
+                Sign In
+              </Typography>
             </Button>
             <Typography>
               <Link href="#" onClick={onClick}>

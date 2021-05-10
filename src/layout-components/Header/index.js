@@ -99,12 +99,12 @@ const Header = props => {
     () => {
       if (success) {
         dispatch (showSnackbar ('Logout successful!'));
-        //trigger rerender on success
+        history.push('/landing')
       } else if (error) {
         dispatch (showSnackbar ('Something went wrong during logout.'));
       }
     },
-    [success, dispatch, error]
+    [success, dispatch, error, history]
   );
 
   return (

@@ -9,6 +9,8 @@ import {
   PROFILE_UPDATE_FAIL,
   CLEAR_PROFILE,
 } from '../constants/profileConstants';
+import {SET_ALERT} from '../constants/alertConstants';
+
 import api from '../utils/api';
 
 // axios.defaults.withCredentials = true;
@@ -123,6 +125,10 @@ export const updateProfile = (id, formData) => async (dispatch, getState) => {
       type: PROFILE_UPDATE_SUCCESS,
       payload: data,
     });
+
+    dispatch ({type: SET_ALERT, message: 'Update Successful!'});
+
+
     // }
   } catch (error) {
     const message = error.response && error.response.data.message
@@ -133,5 +139,8 @@ export const updateProfile = (id, formData) => async (dispatch, getState) => {
       type: PROFILE_UPDATE_FAIL,
       payload: message,
     });
+
+    dispatch ({type: SET_ALERT, message: 'Update failed!'});
+
   }
 };

@@ -113,12 +113,22 @@ const DummySignupForm = ({onClick, setShowSignup}) => {
               placeholder="Password"
               type="password"
             />
-            <Button color="primary" variant="contained">
+            {/* <Button color="primary" variant="contained">
               <input
                 className={classes.submit}
                 type="submit"
                 value="Create Account"
               />
+            </Button> */}
+            <Button
+              color="primary"
+              variant="contained"
+              size="small"
+              type="submit"
+            >
+              <Typography color="textSecondary" variant="body2">
+                Sign Up
+              </Typography>
             </Button>
             <Typography>
               <Link href="#" onClick={onClick}>

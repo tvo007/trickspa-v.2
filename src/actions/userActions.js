@@ -283,6 +283,8 @@ export const updateUserAccount = (id, formData) => async (
     dispatch ({type: USER_ACCOUNT_UPDATE_SUCCESS});
 
     dispatch ({type: USER_LOGIN_UPDATE, payload: data});
+
+    dispatch ({type: SET_ALERT, message: 'Account update succesful!'});
     //updates userLogin state upon successful update
 
     // dispatch ({type: USER_ACCOUNT_UPDATE_RESET});

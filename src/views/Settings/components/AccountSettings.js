@@ -39,6 +39,8 @@ const AccountSettings = ({
     JSON.stringify (`${userProfile.first_name[0]}${userProfile.last_name[0]}`)
   );
 
+  //update user account listener
+
   useEffect (
     () => {
       if (!defaultAvatarsLoaded)
