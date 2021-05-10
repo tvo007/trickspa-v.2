@@ -35,7 +35,7 @@ const Profile = props => {
       if (profileLoaded && isLoggedIn) {
         try {
           // dispatch (
-          dispatch (getProfileAuth (userInfo.slug, userProfile[0].slug));
+          dispatch (getProfileAuth (userInfo.slug, userProfile.slug));
         } catch (error) {
           console.log (error);
           dispatch (showSnackbar ('Something went wrong.'));
@@ -49,7 +49,7 @@ const Profile = props => {
   return (
     <ProfileView
       // avatar={userInfo.user.avatar}
-      userProfile={userProfile[0]}
+      userProfile={userProfile}
       profileLoading={profileLoading}
       profileError={profileError}
       isLoggedIn={isLoggedIn}
