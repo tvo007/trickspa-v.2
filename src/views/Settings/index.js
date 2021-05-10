@@ -40,14 +40,10 @@ const Settings = props => {
       isLoggedIn={isLoggedIn}
       userInfo={userInfo}
       profileLoaded={profileLoaded}
-      userProfile={userProfile[0]}
+      userProfile={userProfile}
       profileLoading={profileLoading}
     />
   );
 };
-
-// Settings.propTypes = {
-
-// }
 
 export default Settings;

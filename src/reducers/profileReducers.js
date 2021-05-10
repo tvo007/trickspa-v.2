@@ -10,33 +10,33 @@ import {
     CLEAR_PROFILE,
 } from '../constants/profileConstants'
 
-export const userProfileReducer = (state = {userProfile: []}, action) => {
+export const userProfileReducer = (state = {userProfile: {}}, action) => {
     switch (action.type) {
       case PROFILE_GET_REQUEST:
         return {...state, loading: true};
       case PROFILE_GET_SUCCESS:
-        return {...state, loading: false, loaded: true, userProfile: [action.payload], isOwner: false};
+        return {...state, loading: false, loaded: true, userProfile: action.payload, isOwner: false};
       case PROFILE_IS_OWNER: 
         return {...state, isOwner: true}
       case PROFILE_GET_FAIL:
         return {loading: false, error: action.payload};
       case CLEAR_PROFILE: 
-      return {userProfile: []}
+      return {userProfile: {}}
       default:
         return state;
     }
   };
 
-  export const updateProfileReducer = (state = {userProfile: []}, action) => {
+  export const updateProfileReducer = (state = {userProfile: {}}, action) => {
     switch (action.type) {
       case PROFILE_UPDATE_REQUEST:
         return { loading: true }
       case PROFILE_UPDATE_SUCCESS:
-        return { loading: false, success: true, userProfile: [action.payload] }
+        return { loading: false, success: true, userProfile: action.payload }
       case PROFILE_UPDATE_FAIL:
         return { loading: false, error: action.payload }
       case PROFILE_UPDATE_RESET:
-        return {userProfile: []}
+        return {userProfile: {}}
       default:
         return state
     }
