@@ -77,21 +77,6 @@ const CreatePostView = ({
           <Grid container direction="column" spacing={1}>
             <Grid item>
               <form onSubmit={handleSubmit (submitHandler)}>
-                {/* <input
-                  type="text"
-                  placeholde="email"
-                  name="email"
-                  ref={register}
-                />
-                <input
-                  type="password"
-                  placeholde="password"
-                  name="password"
-                  ref={register ({required: 'PASSWORD REQUIRED', minLength: {value: 8, message: "TOO SHORT"}})}
-                />
-                <input type="submit" />
-                {errors.password &&
-                  <Typography>{errors.password.message}</Typography>} */}
                 <Grid container direction="column" spacing={2}>
                   <Grid item>
                     <TextField
