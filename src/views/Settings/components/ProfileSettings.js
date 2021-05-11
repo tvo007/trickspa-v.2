@@ -28,8 +28,8 @@ const ProfileSettings = ({
   userInfo,
   userProfile,
   profileLoaded,
-  profileLoading,
-  isLoggedIn,
+  // profileLoading,
+  // isLoggedIn,
 }) => {
   const dispatch = useDispatch ();
 
@@ -41,7 +41,7 @@ const ProfileSettings = ({
 
   const updateProfileReducer = useSelector (state => state.updateProfile);
   const {
-    loading: updateProfileLoading,
+    // loading: updateProfileLoading,
     error: updateProfileError,
     success: successUpdate,
   } = updateProfileReducer;

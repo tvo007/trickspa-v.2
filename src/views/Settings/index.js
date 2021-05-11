@@ -16,7 +16,7 @@ const Settings = props => {
     userProfile,
     loading: profileLoading,
     loaded: profileLoaded,
-    error: profileError,
+    // error: profileError,
   } = useSelector (state => state.userProfile);
 
   useEffect (

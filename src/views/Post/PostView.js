@@ -17,18 +17,7 @@ import {commentSchema} from '../../common/validationSchema';
 import {
   Grid,
   Typography,
-  // Card,
-  // CardHeader,
-  // CardContent,
-  // Divider,
-  // Button,
 } from '@material-ui/core';
-// import {makeStyles} from '@material-ui/core/styles';
-// const useStyles = makeStyles (theme => ({
-//   buttonText: {
-//     color: theme.palette.primary.contrastText,
-//   },
-// }));
 
 const PostView = ({
   forumSlug,

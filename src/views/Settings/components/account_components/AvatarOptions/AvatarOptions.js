@@ -24,7 +24,7 @@ function TabPanel (props) {
   );
 }
 
-const AvatarOptions = ({defaultAvatars, setImagePreview}) => {
+const AvatarOptions = ({defaultAvatars, setImagePreview, initials}) => {
   const [value, setValue] = useState (0);
 
   const handleChange = (event, newValue) => {
@@ -66,7 +66,7 @@ const AvatarOptions = ({defaultAvatars, setImagePreview}) => {
 
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <AvatarOtherOptions setImagePreview={setImagePreview} />
+        <AvatarOtherOptions setImagePreview={setImagePreview} initials={initials} />
 
       </TabPanel>
 

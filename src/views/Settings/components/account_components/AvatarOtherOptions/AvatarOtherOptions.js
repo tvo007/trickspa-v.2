@@ -23,9 +23,9 @@ const AvatarOtherOptions = ({setImagePreview}) => {
         className={classes.submitButton}
         color="primary"
         variant="contained"
-        onClick={() => setImagePreview ('')}
+        onClick={() => setImagePreview (``)}
       >
-        Use Your Initials
+        Set Generic Person Avatar
       </Button>
     </Grid>
   );

@@ -20,10 +20,10 @@ const schema = yup.object ().shape ({
 
 const AccountSettings = ({
   userInfo,
-  userProfile,
+  // userProfile,
   profileLoaded,
-  profileLoading,
-  isLoggedIn,
+  // profileLoading,
+  // isLoggedIn,
 }) => {
   const dispatch = useDispatch ();
 
@@ -34,10 +34,6 @@ const AccountSettings = ({
   const [imagePreview, setImagePreview] = useState ('');
 
   const [showAvatarURLForm, setShowAvatarURLForm] = useState (false);
-
-  const initials = JSON.parse (
-    JSON.stringify (`${userProfile.first_name[0]}${userProfile.last_name[0]}`)
-  );
 
   //update user account listener
 
@@ -116,9 +112,7 @@ const AccountSettings = ({
           errors={errors}
           showAvatarURLForm={showAvatarURLForm}
           setShowAvatarURLForm={setShowAvatarURLForm}
-          AvatarPreview={
-            <AvatarPreview imagePreview={imagePreview} initials={initials} />
-          }
+          AvatarPreview={<AvatarPreview imagePreview={imagePreview} />}
           AvatarOptions={
             <AvatarOptions
               defaultAvatars={avatars}

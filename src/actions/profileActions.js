@@ -7,7 +7,6 @@ import {
   PROFILE_UPDATE_REQUEST,
   PROFILE_UPDATE_SUCCESS,
   PROFILE_UPDATE_FAIL,
-  CLEAR_PROFILE,
 } from '../constants/profileConstants';
 import {SET_ALERT} from '../constants/alertConstants';
 

@@ -75,7 +75,7 @@ const useStyles = makeStyles (theme => ({
 const ProfileView = ({
   userProfile,
   profileLoading,
-  profileError,
+  // profileError,
   isLoggedIn,
   // userInfo,
   isOwner,
@@ -84,10 +84,6 @@ const ProfileView = ({
   /**
    *
    */
-
-  const userAvatar = userProfile
-    ? userProfile.users_permissions_user.avatar
-    : null;
 
   const history = useHistory ();
 
@@ -99,7 +95,7 @@ const ProfileView = ({
         : profileLoaded
             ? <Fragment>
                 <Grid item xs={12}>
-                  <Avatar className={classes.avatar} src={userAvatar}>
+                  <Avatar className={classes.avatar} src={userProfile.users_permissions_user.avatar} alt=''>
                     {/* {userAvatar !== '' || userAvatar !== null
                       ? null
                       : `${userProfile.first_name[0]}${userProfile.last_name[0]}`} */}
