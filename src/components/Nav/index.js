@@ -33,24 +33,28 @@ const Nav = ({text}) => {
     history.push (route);
   };
 
+  const classes = useStyles ();
   return (
     <Grid container>
-      <Button onClick={() => navHandler ('/forums')}>
-        <Typography>forums</Typography>
+      <Button size="small" onClick={() => navHandler ('/forums')}>
+        <Typography variant="button">forums</Typography>
       </Button>
       <Typography variant="h2">/</Typography>
 
       {forumSlug
-        ? <Button onClick={() => navHandler (`/forums/${forumSlug}`)}>
-            <Typography>{forumSlug}</Typography>
+        ? <Button
+            size="small"
+            onClick={() => navHandler (`/forums/${forumSlug}`)}
+          >
+            <Typography variant="button">{forumSlug}</Typography>
           </Button>
         : null}
 
       {text
         ? <Fragment>
             <Typography variant="h2">/</Typography>
-            <Button>
-              <Typography>{text}</Typography>
+            <Button size="small">
+              <Typography variant="button">{text}</Typography>
             </Button>
           </Fragment>
         : null}
@@ -59,9 +63,10 @@ const Nav = ({text}) => {
         ? <Fragment>
             <Typography variant="h2">/</Typography>
             <Button
+              size="small"
               onClick={() => navHandler (`/forums/${forumSlug}/${postSlug}`)}
             >
-              <Typography>{postSlug}</Typography>
+              <Typography variant="button">{postSlug}</Typography>
             </Button>
           </Fragment>
         : null}
