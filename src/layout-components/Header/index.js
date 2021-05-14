@@ -2,11 +2,7 @@ import React, {useEffect} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/styles';
-import {
-  AppBar,
-  Toolbar,
-  Grid,
-} from '@material-ui/core';
+import {AppBar, Toolbar, Grid} from '@material-ui/core';
 import {logout} from '../../actions/userActions';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
@@ -21,7 +17,7 @@ const useStyles = makeStyles (theme => ({
   },
   appBar: {
     backgroundColor: 'white',
-    width: `calc(100% - 73px)`,
+    width: `100%`,
     // 'calc(100% - 8px)',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create (['width', 'margin'], {
@@ -99,7 +95,7 @@ const Header = props => {
     () => {
       if (success) {
         dispatch (showSnackbar ('Logout successful!'));
-        history.push('/landing')
+        history.push ('/landing');
       } else if (error) {
         dispatch (showSnackbar ('Something went wrong during logout.'));
       }
