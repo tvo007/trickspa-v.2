@@ -161,7 +161,7 @@ const ProfileView = ({
                     <Divider />
                     <CardContent className={classes.list}>
                       <List aria-label="organizations">
-                        {userProfile.orgs.length > 0
+                        {userProfile.orgs && (userProfile.orgs.length > 0
                           ? userProfile.orgs.map (org => (
                               <ListItem key={org.id}>
                                 <ListItemIcon>
@@ -172,7 +172,7 @@ const ProfileView = ({
                             ))
                           : <ListItem>
                               <ListItemText>No orgs to show</ListItemText>
-                            </ListItem>}
+                            </ListItem>)}
                       </List>
                       {/* <Typography>Mapped Tricking Orgs</Typography>
                 <Typography>Some Tricking Org</Typography>
@@ -190,7 +190,7 @@ const ProfileView = ({
                     <Divider />
                     <CardContent className={classes.list}>
                       <List aria-label="Past gatherings">
-                        {userProfile.event_history.length > 0
+                        {userProfile.event_history && (userProfile.event_history.length > 0
                           ? userProfile.event_history.map (event => (
                               <ListItem key={event.id}>
                                 <ListItemIcon>
@@ -202,7 +202,7 @@ const ProfileView = ({
                           : <ListItem>
                               <ListItemText>No events to show</ListItemText>
 
-                            </ListItem>}
+                            </ListItem>)}
                       </List>
                       {/* <Typography>Mapped Past Gatherings</Typography>
                 <Typography>Some other thing</Typography>
