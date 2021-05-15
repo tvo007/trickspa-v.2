@@ -1,14 +1,16 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import {IconButton, Grid, Hidden} from '@material-ui/core';
+import {IconButton, Grid, Hidden,} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuOpenIcon from '@material-ui/icons/MenuOpen';
 
-const MobileIcons = ({openMini, handleMiniClose, handleMiniOpen}) => {
+const Drawer = ({openMini, handleMiniClose, handleMiniOpen, loginSuccess, classes, history}) => {
   return (
     <Grid item>
+    
+   
       <Hidden smDown>
-        {!openMini
+        {!openMini && loginSuccess
           ? <IconButton
               aria-label="open drawer"
               onClick={handleMiniOpen}
@@ -16,13 +18,15 @@ const MobileIcons = ({openMini, handleMiniClose, handleMiniOpen}) => {
             >
               <MenuIcon />
             </IconButton>
-          : <IconButton
-              aria-label="open drawer"
-              onClick={handleMiniClose}
-              color="default"
-            >
-              <MenuOpenIcon />
-            </IconButton>}
+          : loginSuccess
+              ? <IconButton
+                  aria-label="open drawer"
+                  onClick={handleMiniClose}
+                  color="default"
+                >
+                  <MenuOpenIcon />
+                </IconButton>
+              : null}
       </Hidden>
     </Grid>
   );
@@ -30,4 +34,4 @@ const MobileIcons = ({openMini, handleMiniClose, handleMiniOpen}) => {
 
 // MobileIcons.propTypes = {};
 
-export default MobileIcons;
+export default Drawer;

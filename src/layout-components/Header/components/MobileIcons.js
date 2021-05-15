@@ -11,19 +11,13 @@ const MobileIcons = ({
   logoutHandler,
   history,
   onSidebarOpen,
-  loginSuccess
+  loginSuccess,
 }) => {
   return (
     <Fragment>
-
       {!isDesktop && !loginSuccess
         ? <Grid item container direction="row" justify="flex-end">
             <Grid item>
-              <Hidden lgUp>
-                <IconButton onClick={onSidebarOpen} color="default">
-                  <MenuIcon />
-                </IconButton>
-              </Hidden>
             </Grid>
             <Grid item>
               <Button
@@ -35,7 +29,6 @@ const MobileIcons = ({
                 <Typography>
                   Log In
                 </Typography>
-
               </Button>
             </Grid>
           </Grid>

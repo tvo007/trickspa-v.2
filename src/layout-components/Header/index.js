@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/styles';
-import {AppBar, Toolbar, Grid} from '@material-ui/core';
+import {AppBar, Toolbar, Grid, Button, Typography} from '@material-ui/core';
 import {logout} from '../../actions/userActions';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
@@ -48,11 +48,10 @@ const useStyles = makeStyles (theme => ({
   signInButton: {
     marginRight: 30,
     marginTop: theme.spacing (1),
-
     //
   },
   menuButton: {
-    marginRight: 30,
+    // backgroundColor: 'black',
   },
   hide: {
     display: 'none',
@@ -115,12 +114,25 @@ const Header = props => {
 
         <Toolbar>
           <div className={classes.flexGrow} />
-          <Grid />
+
+          <Button
+            color="default"
+            onClick={() => history.push ('/forums')}
+            size="small"
+            className={classes.menuButton}
+          >
+            <Typography variant="h1">
+              TS
+            </Typography>
+          </Button>
+
           <Grid container direction="row" justify="space-between">
             <Drawer
+              loginSuccess={loginSuccess}
               openMini={openMini}
               handleMiniClose={handleMiniClose}
               handleMiniOpen={handleMiniOpen}
+              classes={classes}
             />
             <DesktopIcons
               loginSuccess={loginSuccess}

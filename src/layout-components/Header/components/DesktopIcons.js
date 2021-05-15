@@ -26,6 +26,7 @@ const DesktopIcons = ({
           </Grid>
         : !loginSuccess && isDesktop
             ? <Grid item>
+
                 <Button
                   className={classes.signInButton}
                   color="default"
@@ -35,7 +36,6 @@ const DesktopIcons = ({
                   <Typography>
                     Log In
                   </Typography>
-
                 </Button>
               </Grid>
             : null}
