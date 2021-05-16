@@ -134,14 +134,6 @@ const Header = props => {
               handleMiniOpen={handleMiniOpen}
               classes={classes}
             />
-            <DesktopIcons
-              loginSuccess={loginSuccess}
-              isDesktop={isDesktop}
-              classes={classes}
-              logoutHandler={logoutHandler}
-              history={history}
-            />
-
             <MobileIcons
               loginSuccess={loginSuccess}
               isDesktop={isDesktop}
@@ -149,6 +141,13 @@ const Header = props => {
               logoutHandler={logoutHandler}
               history={history}
               onSidebarOpen={onSidebarOpen}
+            />
+            <DesktopIcons
+              loginSuccess={loginSuccess}
+              isDesktop={isDesktop}
+              classes={classes}
+              logoutHandler={logoutHandler}
+              history={history}
             />
 
           </Grid>

@@ -71,7 +71,7 @@ const ProfileSettings = ({
         history.push (`/profile/${userInfo.slug}`);
       } else if (updateProfileError) {
         dispatch ({type: PROFILE_UPDATE_RESET});
-        history.push ('/404');
+        // history.push ('/404');
       }
     },
     [dispatch, successUpdate, updateProfileError, reset, userInfo, history]
@@ -86,8 +86,8 @@ const ProfileSettings = ({
           setMappedOrgs (orgsCopy);
           // setMappedEvents (eventsCopy);
         } catch (error) {
-          history.push ('/404');
-          showSnackbar (error);
+          // history.push ('/404');
+          showSnackbar ('Something went wrong');
         }
       }
     },
@@ -103,8 +103,8 @@ const ProfileSettings = ({
           // setMappedOrgs (orgsCopy);
           setMappedEvents (eventsCopy);
         } catch (error) {
-          history.push ('/404');
-          showSnackbar (error);
+          // history.push ('/404');
+          showSnackbar ('Something went wrong');
         }
       }
     },
