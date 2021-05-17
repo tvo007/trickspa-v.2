@@ -13,15 +13,22 @@ import {
   Post,
   Profile,
   MyProfile,
-  // // Dummy,
   CreatePost,
   Settings,
+  SignIn,
 } from './views';
 
 const Routes = props => {
   return (
     <Switch>
       <Redirect exact from="/" to="/Forums" />
+      <RouteWithLayout
+        component={SignIn}
+        exact
+        layout={LandingLayout}
+        path="/signin"
+      />
+
       <RouteWithLayout
         component={Dashboard}
         exact

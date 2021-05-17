@@ -9,3 +9,7 @@ export {default as Profile} from './Profile';
 export {default as MyProfile} from './MyProfile';
 export {default as Settings} from './Settings';
 export {default as Error404} from './Error404';
+export {default as SignIn} from './SignIn';
+// export {default as SignUp} from './SignUp';
+
+
