@@ -17,18 +17,29 @@ const MobileIcons = ({
     <Fragment>
       {!isDesktop && !loginSuccess
         ? <Grid item container direction="row" justify="flex-end">
-            <Grid item>
-            </Grid>
+            <Grid item />
             <Grid item>
               <Button
                 className={classes.signInButton}
                 color="default"
-                onClick={() => history.push ('/landing')}
+                onClick={e => history.push ('/login')}
                 size="small"
               >
                 <Typography>
                   Log In
                 </Typography>
+
+              </Button>
+              <Button
+                className={classes.signInButton}
+                color="default"
+                onClick={e => history.push ('/register')}
+                size="small"
+              >
+                <Typography>
+                  Register
+                </Typography>
+
               </Button>
             </Grid>
           </Grid>

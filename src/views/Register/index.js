@@ -1,12 +1,12 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import LandingView from './LandingView';
-import DummyLandingView from './DummyLandingView';
+import RegisterView from './RegisterView';
 
-const Landing = () => {
-  return <DummyLandingView/>;
+const Register = props => {
+  return <RegisterView />;
 };
 
 // Landing.propTypes = {};
 
-export default Landing;
+export default Register;

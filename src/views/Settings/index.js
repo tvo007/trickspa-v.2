@@ -22,7 +22,7 @@ const Settings = props => {
   useEffect (
     () => {
       if (!isLoggedIn) {
-        history.push ('/landing?redirect=settings');
+        history.push ('/login?redirect=settings');
       } else if (isLoggedIn) {
         dispatch ({type: CLEAR_PROFILE});
         try {

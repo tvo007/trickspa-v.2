@@ -21,7 +21,7 @@ const schema = yup.object ().shape ({
   password: yup.string ().required ('Please enter your password.'),
 });
 
-const SignInView = () => {
+const LoginView = () => {
   const {register, handleSubmit, errors} = useForm ({
     resolver: yupResolver (schema),
   });
@@ -77,8 +77,8 @@ const SignInView = () => {
               </Grid>
             </Grid>
             <Grid className={classes.rightSide} item sm={6} xs={12}>
-              <Typography align="center" variant="h2">
-                Sign In
+              <Typography align="center" variant="h1">
+                Welcome!
               </Typography>
               <form
                 className={classes.form}
@@ -112,13 +112,13 @@ const SignInView = () => {
                   type="submit"
                 >
                   <Typography color="textSecondary" variant="body2">
-                    Sign In
+                    Continue
                   </Typography>
                 </Button>
                 <Typography>
                   {/**onClick to SignUp here VVV */}
-                  <Link href="#">
-                    Sign Up
+                  <Link href="#" onClick={e => history.push(`/register`)}>
+                    Register
                   </Link>
                 </Typography>
               </form>
@@ -131,6 +131,6 @@ const SignInView = () => {
   );
 };
 
-SignInView.propTypes = {};
+LoginView.propTypes = {};
 
-export default SignInView;
+export default LoginView;

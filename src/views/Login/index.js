@@ -1,12 +1,12 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import LandingView from './LandingView';
-import SignInView from './SignInView';
+import LoginView from './LoginView';
 
-const SignIn = props => {
-  return <SignInView />;
+const Login = props => {
+  return <LoginView />;
 };
 
 // Landing.propTypes = {};
 
-export default SignIn;
+export default Login;

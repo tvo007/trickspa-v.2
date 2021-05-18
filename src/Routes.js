@@ -7,7 +7,6 @@ import {Main, LandingLayout} from './layouts';
 import {
   Dashboard,
   Error404,
-  Landing,
   Forums,
   ForumSection,
   Post,
@@ -15,7 +14,8 @@ import {
   MyProfile,
   CreatePost,
   Settings,
-  SignIn,
+  Login,
+  Register,
 } from './views';
 
 const Routes = props => {
@@ -23,10 +23,17 @@ const Routes = props => {
     <Switch>
       <Redirect exact from="/" to="/Forums" />
       <RouteWithLayout
-        component={SignIn}
+        component={Login}
         exact
         layout={LandingLayout}
-        path="/signin"
+        path="/login"
+      />
+
+      <RouteWithLayout
+        component={Register}
+        exact
+        layout={LandingLayout}
+        path="/register"
       />
 
       <RouteWithLayout
@@ -54,17 +61,14 @@ const Routes = props => {
         layout={Main}
         path="/profile/:profileSlug"
       />
-      {/* 
-         */}
 
-      {/* <RouteWithLayout component={Auth} exact layout={Main} path="/auth" /> */}
-      <RouteWithLayout
+      {/* <RouteWithLayout
         component={Landing}
         exact
         layout={LandingLayout}
         path="/landing"
-      />
-      {/**PRIVATE ROUTE IN PROGRESS */}
+      /> */}
+
       <RouteWithLayout component={Forums} exact layout={Main} path="/Forums" />
       <RouteWithLayout
         component={ForumSection}
@@ -78,7 +82,7 @@ const Routes = props => {
         layout={Main}
         path="/forums/:forumSlug/createpost"
       />
-      {/**create post page */}
+
       <RouteWithLayout
         component={Post}
         exact
@@ -87,12 +91,7 @@ const Routes = props => {
       />
 
       <RouteWithLayout component={Error404} exact layout={Main} path="/404" />
-      {/* <RouteWithLayout
-          component={Dummy}
-          exact
-          layout={Main}
-          path="/Dummy"
-        /> */}
+
     </Switch>
   );
 };

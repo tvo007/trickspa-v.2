@@ -11,7 +11,7 @@ const MyProfile = props => {
   const {userInfo, loaded} = useSelector (state => state.userLogin);
   useEffect (() => {
     if (!loaded) {
-      history.push ('/landing');
+      history.push ('/login');
     } else if (loaded) {
       history.push (`/profile/${userInfo.slug}`);
     }
